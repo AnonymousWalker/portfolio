@@ -7,7 +7,7 @@ export interface Project {
   description: string
   focus: string
   stack: string[]
-  images: { src: string | null; alt: string; label: string }[]
+  images: { src: string | null; alt: string; label: string; width?: number; height?: number }[]
   github?: string
   role: string
   reviewNote?: string
@@ -20,8 +20,7 @@ export const projects: Project[] = [
   {
     id: 'ats-system', number: '03', title: 'ATS System', category: 'Full-stack application',
     images: [
-      { src: null, alt: 'ATS System overview', label: 'Project overview' },
-      { src: null, alt: 'ATS System detail', label: 'A closer look' },
+      { src: '/ATS-score.png', alt: 'ATS match score preview with a sample score and category breakdown', label: 'Match score preview', width: 998, height: 1575 },
     ],
     description: 'Making résumé and job-description matching transparent, with deterministic skill extraction and weighted scoring.',
     focus: 'API design · Data consistency · Explainable scoring',
@@ -42,29 +41,29 @@ export const projects: Project[] = [
   {
     id: 'ai-draft-translation', number: '01', title: 'AI Draft Translation', category: 'Translation web application',
     images: [
-      { src: null, alt: 'AI Draft Translation overview', label: 'Project overview' },
-      { src: null, alt: 'AI Draft Translation detail', label: 'A closer look' },
+      { src: '/AI-doc-translation.png', alt: 'Document Translation Tool with language selection, file upload, and completed translation jobs', label: 'Translation workspace', width: 1278, height: 900 },
+      { src: '/AI-doc-icon.png', alt: 'AI Draft Translation app icon with Latin and Japanese characters', label: 'App icon', width: 512, height: 512 },
     ],
     description: 'An interface for text and batch translation, with language selection, preserved terms, and progress tracking for long-running jobs.',
     focus: 'Async workflows · API integration · Translation UX',
     stack: ['React', 'TypeScript', 'Material UI', 'Axios'],
     github: 'https://github.com/Bible-Translation-Tools/ai-draft-translation',
-    role: 'Personal contributions to be confirmed. This case study describes the repository’s implementation without attributing all of it to me.',
+    role: 'Built and deployed an AI document translation web application and cloud services in 2025, supporting DOCX, PDF, and text files.',
     architecture: ['React UI', 'Translation API', 'Job status polling'],
     sections: [
       { title: 'Overview', text: 'A React and TypeScript frontend for a translation service described by the repository as NLLB-based. Users can translate text or submit multiple files to one or more target languages. The model and backend are external dependencies, not implemented by this frontend repository.' },
       { title: 'Long-running workflows', text: 'The Axios client uses a five-minute request timeout. Batch submission returns a job identifier and status URL; a custom queue hook polls status, tracks progress, and stops polling when a job completes, fails, or encounters an error.' },
       { title: 'Key engineering decisions', text: 'Batch files and language metadata are sent as multipart form data. A preserved-words glossary is included in job metadata. The client tracks job state separately from the submission form, so users can follow previously submitted work.' },
       { title: 'Persistence trade-off', text: 'Job metadata is stored in localStorage and restored on reload. This restores job tracking, not original file contents: restored file objects retain names and sizes but do not contain the uploaded bytes. That distinction matters when considering retries and recovery.' },
-      { title: 'Current scope & validation', text: 'The repository contains frontend tests for the batch translation page. Those tests were inspected, not run for this portfolio. Translation quality, backend reliability, and my specific contribution are not claimed here.' },
+      { title: 'Current scope & validation', text: 'The repository contains frontend tests for the batch translation page. Those tests were inspected, not run for this portfolio. My work included building and deploying the web application and cloud services. No translation-quality benchmarks or reliability metrics are claimed here.' },
     ],
     source: { commit: '70ba39bb2ffbf05b395fb8b8e3bfec4360840d6e', files: ['src/api/translate.ts', 'src/hooks/useJobQueue.ts', 'src/pages/BatchTranslatePage.tsx'] },
   },
   {
     id: 'biel-mobile-app', number: '02', title: 'BIEL Mobile App', category: 'Mobile reading application',
     images: [
-      { src: null, alt: 'BIEL Mobile App overview', label: 'Project overview' },
-      { src: null, alt: 'BIEL Mobile App detail', label: 'A closer look' },
+      { src: '/biel1.webp', alt: 'BIEL Scripture reader showing Genesis with verse highlighting and audio playback controls', label: 'Reading and audio', width: 1080, height: 2400 },
+      { src: '/biel2.webp', alt: 'BIEL book list with options to download Scripture and audio for offline use', label: 'Offline downloads', width: 1080, height: 2400 },
     ],
     description: 'A Scripture reading and listening app with downloadable content, offline fallback, and chapter-level audio playback.',
     focus: 'Offline data · Mobile architecture · Audio playback',
