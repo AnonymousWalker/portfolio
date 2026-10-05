@@ -1,553 +1,75 @@
-# Project: Build My Software Engineer Portfolio Website
+# Tony Tran — Portfolio
 
-## 1. Objective
+A responsive single-page engineering portfolio built with React, TypeScript, Vite, Tailwind CSS, and Lucide icons. Uses an Apple-inspired visual hierarchy with generous spacing, system typography, a translucent navigation bar, an avatar placeholder, and two image slots per project. Includes light/dark themes, mobile navigation, and accessible case-study dialogs for AI Draft Translation, BIEL Mobile App, and ATS System.
 
-Build a modern, professional portfolio website for me, a mid-level Full-Stack Software Engineer with 5+ years of professional experience.
+## Develop
 
-The primary audience is engineering managers, technical recruiters, and software engineering interviewers.
+Requires Node.js 22.12+ (or 24+) and npm.
 
-The website should communicate three things:
-
-1. I have real production software development experience.
-2. I understand software architecture, databases, APIs, performance optimization, and engineering trade-offs.
-3. I can independently own features and solve challenging technical problems.
-
-This should feel like an experienced software engineer's portfolio, not a generic coding bootcamp website.
-
-**Important:** Build the actual working website, not just a mockup.
-
----
-
-## 2. Technology Stack
-
-Use:
-
-- React
-- TypeScript
-- Vite
-- Tailwind CSS
-- Lucide React for icons
-
-Requirements:
-
-- Responsive, mobile-first design.
-- Clean component architecture.
-- Reusable components.
-- Accessible HTML.
-- SEO-friendly metadata.
-- Fast loading.
-- Easy to maintain and update.
-- Static deployment compatible with Vercel or Netlify.
-
-Do not introduce a backend unless necessary.
-
-Store portfolio content in structured TypeScript data files so I can easily update projects, experience, and skills without modifying UI components.
-
----
-
-## 3. Design Direction
-
-Design a clean, modern, minimalist engineering portfolio.
-
-Visual characteristics:
-
-- Professional and understated.
-- Strong typography.
-- Generous whitespace.
-- Subtle borders.
-- Clean card layouts.
-- Consistent spacing.
-- Minimal animations.
-- Light and dark mode support.
-
-Avoid:
-
-- Excessive animations.
-- Large gradients everywhere.
-- Generic stock photos.
-- Animated skill progress bars.
-- Overly decorative elements.
-- A complicated navigation system.
-
-Use a neutral color palette with one restrained accent color.
-
-The website should look polished on desktop and mobile.
-
----
-
-## 4. Website Architecture
-
-Build a single-page homepage with dedicated project detail pages.
-
-Suggested routes:
-
-```
-/
- /projects/ats-system
- /projects/usfm-converter
- /projects/waveform-optimization
+```sh
+npm ci
+npm run dev
 ```
 
-Homepage navigation:
+The development server defaults to port 5173. No backend, API keys, or environment variables are required. Typography uses the device’s system font stack; no web fonts or third-party font services are loaded.
 
-- Home
-- About
-- Experience
-- Projects
-- Skills
-- Contact
+In a cloud environment where the default npm cache is not writable, use `npm ci --cache /tmp/portfolio-npm-cache`.
 
-Use smooth scrolling for homepage sections.
+## Build and preview
 
-Provide clear navigation back to the homepage from project pages.
-
----
-
-# 5. Homepage Sections
-
-## Section 1: Hero
-
-Name: Tony Tran
-
-Title: Full-Stack Software Engineer
-
-Headline:
-
-"I build reliable software that solves real problems."
-
-Supporting introduction:
-
-"Full-stack software engineer with 5+ years of experience building and improving applications using C#/.NET, Java/Kotlin, React, and SQL. I enjoy solving complex technical problems, improving existing systems, and building software that delivers real value."
-
-Include buttons:
-
-- View My Work
-- Download Resume
-
-Also include:
-
-- GitHub
-- LinkedIn
-- Email
-
-Links:
-
-GitHub: https://github.com/AnonymousWalker
-
-LinkedIn: https://linkedin.com/in/anh-tran-1001
-
-Resume should use a placeholder file at `/public/resume.pdf` until I provide the final PDF.
-
-Do not invent my email address. Use a configurable placeholder.
-
-Do not use generic developer illustrations or stock photographs in the hero.
-
----
-
-## Section 2: About Me
-
-Create a concise professional introduction.
-
-Content direction:
-
-"I'm a full-stack software engineer with over five years of experience working across the software development lifecycle. My background includes backend development, frontend applications, database design, API development, debugging, and performance optimization.
-
-Working in a small engineering environment has given me the opportunity to take ownership of features and contribute across different parts of a system.
-
-I'm interested in building reliable software, understanding how systems work, and continuously improving my engineering skills."
-
-Feel free to improve the wording without inventing achievements.
-
-Keep it professional, friendly, and straightforward.
-
----
-
-## Section 3: Professional Experience
-
-Create a professional experience section with a timeline or clean vertical layout.
-
-My background:
-
-- 5+ years of professional software engineering experience.
-- Experience working at a nonprofit organization.
-- Full-stack development.
-- Backend and frontend implementation.
-- API development.
-- Database work.
-- Debugging and performance optimization.
-- Working across different parts of the software development lifecycle.
-
-Important:
-
-Do not invent company names, employment dates, job titles, numerical achievements, or technologies used in specific positions.
-
-Create configurable experience data with placeholders for details that have not been provided.
-
-Each experience entry should support:
-
-- Company
-- Position
-- Employment dates
-- Description
-- Key contributions
-- Technologies
-
-Focus on engineering impact rather than generic job responsibilities.
-
----
-
-# 6. Featured Projects
-
-Display three featured project cards on the homepage.
-
-Each card should include:
-
-- Project name
-- Short description
-- Technology stack
-- Key engineering focus
-- View Case Study button
-- GitHub link when available
-
-Do not invent live demo URLs.
-
-Use actual project screenshots when available. Otherwise, create a tasteful abstract preview or architecture-based visual rather than a fake application screenshot.
-
-## Project 1: Applicant Tracking System
-
-Name: ATS System
-
-GitHub:
-https://github.com/AnonymousWalker/ats-system
-
-Known technologies:
-
-- Java
-- Spring Boot
-- PostgreSQL
-
-Description:
-
-"A backend-focused Applicant Tracking System project exploring REST API development, relational database design, and application architecture."
-
-Engineering topics to highlight where supported by the repository:
-
-- REST API design
-- Database schema design
-- Transaction management
-- Data consistency
-- Optimistic locking
-- Query optimization
-- Pagination
-- Application architecture
-- Automated testing
-
-Important:
-
-Inspect the repository before writing detailed project descriptions.
-
-Distinguish implemented functionality from concepts that were only discussed or planned.
-
-Do not claim a feature was implemented unless it exists in the codebase.
-
-The case study should explain actual architectural decisions and trade-offs supported by the implementation.
-
-## Project 2: USFM Converter
-
-Name: USFM Converter
-
-Repository:
-https://github.com/Bible-Translation-Tools/USFM-Converter
-
-Description:
-
-"A software project involving structured Scripture data conversion and processing."
-
-Engineering areas to investigate:
-
-- Parsing
-- Structured text processing
-- Data transformation
-- Kotlin implementation
-- Compatibility
-- Error handling
-
-Inspect the repository to identify the actual architecture, technologies, and implementation.
-
-Do not attribute every repository contribution to me.
-
-If my specific contributions cannot be established from the available source or commit history, use neutral wording and mark the section for my review.
-
-## Project 3: Waveform Performance Optimization
-
-Name: Audio Waveform Performance Optimization
-
-Type: Professional engineering case study.
-
-Context:
-
-A desktop application experienced increasingly sluggish waveform visualization when processing long audio files.
-
-The previous implementation generated a single waveform representation that became expensive to render as audio length increased.
-
-I investigated the problem by isolating expensive sections, narrowing down the bottleneck, and measuring execution times.
-
-The optimization involved dividing waveform processing into smaller segments and using asynchronous computation to improve responsiveness.
-
-The case study should cover:
-
-1. Problem
-2. Investigation
-3. Root cause
-4. Solution
-5. Technical trade-offs
-6. Results
-7. Lessons learned
-
-Do not invent performance percentages, benchmark results, or exact implementation details.
-
-Use diagrams or simplified examples rather than proprietary source code.
-
-Clearly label any illustrative diagram as conceptual.
-
----
-
-# 7. Project Detail Page Template
-
-Create a reusable project case study component.
-
-Each project detail page should follow this structure:
-
-### Overview
-
-What is the project, and what problem does it solve?
-
-### My Role
-
-What was my involvement?
-
-### Technical Stack
-
-Technologies actually used.
-
-### Architecture
-
-Display a simple architecture diagram where appropriate.
-
-### Key Engineering Decisions
-
-Explain important implementation choices and alternatives.
-
-### Challenges
-
-Describe meaningful technical difficulties.
-
-### Solutions
-
-Explain how the problems were addressed.
-
-### Results
-
-Describe actual outcomes without inventing statistics.
-
-### Lessons Learned
-
-Discuss engineering insights and possible future improvements.
-
-### Links
-
-GitHub repository and live demo when available.
-
-Use structured project data to populate this template.
-
-If details are unavailable, do not fabricate content. Use clearly identified placeholders or omit the section until verified.
-
----
-
-# 8. Technical Skills
-
-Organize skills by category.
-
-Backend:
-
-- C#
-- .NET
-- ASP.NET
-- Java
-- Kotlin
-- Spring Boot
-- REST APIs
-
-Frontend:
-
-- JavaScript
-- React
-- HTML
-- CSS
-- Bootstrap
-
-Database:
-
-- PostgreSQL
-- Microsoft SQL Server
-- MySQL
-- SQLite
-
-Engineering and Tools:
-
-- Git
-- Docker
-- CI/CD
-- Automated Testing
-- Code Reviews
-- Software Architecture
-- Design Patterns
-
-Display these as clean grouped lists or tags.
-
-Do not use percentage-based skill bars or subjective proficiency ratings.
-
----
-
-# 9. Contact Section
-
-Heading:
-
-"Let's Connect"
-
-Description:
-
-"I'm interested in opportunities to build reliable software and contribute to a collaborative engineering team. Feel free to reach out."
-
-Include:
-
-- Email
-- LinkedIn
-- GitHub
-- Download Resume
-
-Use a configurable email placeholder.
-
-Do not build a contact form unless there is a reliable delivery solution.
-
----
-
-# 10. User Experience Requirements
-
-Navigation:
-
-- Sticky navigation bar.
-- Mobile navigation menu.
-- Smooth scrolling.
-- Active section indication where practical.
-
-Interaction:
-
-- Subtle hover effects.
-- Accessible focus indicators.
-- Dark/light theme toggle.
-- Respect reduced-motion preferences.
-
-Performance:
-
-- Optimize images.
-- Avoid unnecessary dependencies.
-- Minimize layout shifts.
-- Ensure good Lighthouse performance.
-
-Accessibility:
-
-- Semantic HTML.
-- Keyboard navigation.
-- Appropriate color contrast.
-- Accessible buttons and links.
-- Alt text for meaningful images.
-
-SEO:
-
-- Descriptive page titles.
-- Meta descriptions.
-- Open Graph metadata.
-- Appropriate heading hierarchy.
-
----
-
-# 11. Implementation Structure
-
-Use a structure similar to:
-
-```
-src/
-├── components/
-│   ├── layout/
-│   │   ├── Navbar.tsx
-│   │   └── Footer.tsx
-│   ├── sections/
-│   │   ├── Hero.tsx
-│   │   ├── About.tsx
-│   │   ├── Experience.tsx
-│   │   ├── Projects.tsx
-│   │   ├── Skills.tsx
-│   │   └── Contact.tsx
-│   └── ui/
-│       ├── ProjectCard.tsx
-│       └── SectionHeading.tsx
-├── data/
-│   ├── projects.ts
-│   ├── experience.ts
-│   └── skills.ts
-├── pages/
-│   ├── Home.tsx
-│   └── ProjectDetail.tsx
-├── App.tsx
-└── main.tsx
+```sh
+npm run build
+npm run preview
 ```
 
-Adjust the architecture if a simpler or more maintainable approach is appropriate.
+The build runs the TypeScript check before producing a static `dist/` directory.
 
-Avoid unnecessary abstraction.
+## Browser checks
 
----
+```sh
+npx playwright install chromium
+npm run build
+npm run test:e2e
+```
 
-# 12. Deliverables
+If system Chromium exists at `/usr/bin/chromium`, tests use it automatically; the download is unnecessary. For another system path, set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`. On Linux, Playwright browser dependencies may need `npx playwright install --with-deps chromium`.
 
-Implement the project in the working repository.
+Tests exercise desktop and mobile layouts, theme persistence, navigation, case-study keyboard behavior and focus restoration, missing-link handling, reduced motion, and automated WCAG A/AA checks with axe. Automated checks do not replace manual accessibility review.
 
-Complete the following:
+## Update content
 
-1. Initialize the application if the repository is empty.
-2. Install necessary dependencies.
-3. Implement the complete responsive homepage.
-4. Implement project detail pages.
-5. Add content data files.
-6. Add dark/light theme support.
-7. Ensure navigation works.
-8. Add README with setup and deployment instructions.
-9. Add placeholders for missing personal information and assets.
-10. Verify that the production build succeeds.
+- `src/data/profile.ts`: name, introduction, contact URLs, professional experience, and grouped skills.
+- `src/data/projects.ts`: project descriptions, stacks, roles, architectures, case-study sections, and source references.
+- `src/styles.css`: theme colors, typography, and responsive layout.
+- `public/`: favicon, social card, and résumé assets.
 
-If testing tools are available, also run relevant checks.
+### Details to add later
 
-Fix any build or type errors before completing the task.
+Email, exact employment details, personal contributions to team projects, and the résumé are intentionally unconfirmed. The UI clearly identifies missing details and never invents a contact address or achievement.
 
-Do not claim tests passed unless they were actually executed successfully.
+Replace `public/resume.pdf` with your real résumé and set `profile.resumeUrl` to `'/resume.pdf'`. Until then, résumé links are unavailable. The included PDF is explicitly a placeholder and is not linked from the site.
 
----
+Set `profile.email` to enable email links. Add company, title, dates, and position-specific technologies to the experience data when ready.
 
-# 13. Definition of Done
+### Avatar and project photos
 
-The website is complete when:
+Place your image files under `public/images/` (create the directory when adding files).
 
-- The homepage is fully implemented.
-- All main sections are present.
-- Project cards navigate to project detail pages.
-- The layout works on mobile, tablet, and desktop.
-- All existing links work.
-- Unavailable links are clearly disabled or omitted.
-- Theme switching works.
-- No fabricated professional achievements appear.
-- Portfolio content is easy to update.
-- The production build succeeds.
-- The README explains how to run and deploy the website.
+- Set `profile.avatar.src` to a path such as `'/images/tony.jpg'`. Update `profile.avatar.alt` if needed. The portrait is cropped to a circle.
+- In `src/data/projects.ts`, set each project image’s `src` to a local path such as `'/images/biel-overview.webp'`, and write descriptive `alt` text. Each project includes two image entries. Remove the second entry if you prefer one photo.
+- `null` sources render clearly labeled placeholders, without broken image requests. Real project images are lazy-loaded, and the layout reserves their space.
+- Image URLs are relative to `public/`; do not include `public` in the URL. Prefer compressed WebP or JPEG assets. The site crops card images with `object-fit: cover`.
 
-Build the website now. Make reasonable implementation decisions without repeatedly asking for confirmation. Clearly identify any missing information that requires my input after implementation.
+Project descriptions were checked against the source commits recorded in the project data. Repository features are described neutrally; they are not all attributed to Tony. Source-project tests were inspected, not executed. Project photo slots are explicitly labeled placeholders. Case-study architecture diagrams remain conceptual.
+
+The original website brief is preserved in `docs/original-brief.md`. The current implementation follows the later request for a single-page site and the updated project selection.
+
+## Deploy
+
+For Vercel: import the repository, select Vite, use `npm run build` and `dist` as the output directory.
+
+For Netlify: import the repository, use `npm run build` and `dist` as the publish directory. A `netlify.toml` supplies those settings.
+
+The page uses section anchors and native dialogs, so no SPA route rewrites are needed. Deploy from the repository root. Deployment is not performed by development or build commands.
+
+Before sharing the site, replace placeholder personal information. At your final HTTPS domain, update social metadata in `index.html` with an absolute `og:url` and absolute image URL. Some social platforms do not support SVG previews; export `public/social-card.svg` to a PNG and reference that URL for broad compatibility.
