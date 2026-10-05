@@ -1,13 +1,15 @@
 import { defineConfig, devices } from '@playwright/test'
 import { existsSync } from 'node:fs'
 
+const previewUrl = `http://127.0.0.1:4173${process.env.PLAYWRIGHT_BASE_PATH || '/'}`
+
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
   workers: 2,
   reporter: 'list',
   use: {
-    baseURL: 'http://127.0.0.1:4173',
+    baseURL: previewUrl,
     colorScheme: 'light',
     trace: 'retain-on-failure',
     launchOptions: {
@@ -20,7 +22,8 @@ export default defineConfig({
   ],
   webServer: {
     command: 'npm run preview -- --port 4173 --strictPort',
-    url: 'http://127.0.0.1:4173',
+    env: { VITE_BASE_PATH: process.env.PLAYWRIGHT_BASE_PATH || '/' },
+    url: previewUrl,
     reuseExistingServer: !process.env.CI,
   },
 })

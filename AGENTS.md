@@ -26,6 +26,10 @@ The reference was inaccessible during implementation because of network restrict
 - Preserve the user's selected projects: AI Draft Translation, BIEL Mobile App, and ATS System, unless asked to change them.
 - Attribute personal contributions only when confirmed by the user. Distinguish inspected repository features from the user's own work. Do not invent employment details, performance metrics, or project outcomes.
 
+## Deployment
+
+GitHub Pages deployment is configured in `.github/workflows/deploy-pages.yml`. Keep public image paths compatible with Vite's `BASE_URL` through `src/lib/assets.ts`. The workflow builds with `VITE_BASE_PATH=/portfolio/`; root hosting remains the default. Validate deployment changes with a build and browser checks at `/portfolio/`.
+
 ## Validation
 
 Run `npm run build` after application changes. For changes affecting layout, navigation, themes, images, or dialogs, run the relevant existing browser checks with `npm run test:e2e`. Investigate failures and preserve meaningful assertions. No application checks are needed for documentation-only changes.

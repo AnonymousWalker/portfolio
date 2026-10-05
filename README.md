@@ -64,10 +64,34 @@ The original website brief is preserved in `docs/original-brief.md`. The current
 
 ## Deploy
 
+### GitHub Pages (configured)
+
+The workflow in `.github/workflows/deploy-pages.yml` builds with Node.js 24 and publishes `dist/` after each push to `main`. It can also be run manually from the Actions tab. No third-party hosting account or repository secrets are required; deployment uses GitHub's built-in workflow token.
+
+One-time setup in GitHub:
+
+1. Open **Settings → Pages** in this repository.
+2. Under **Build and deployment → Source**, select **GitHub Actions**.
+3. Open **Actions → Deploy portfolio to GitHub Pages** and select **Run workflow** on `main`, or rerun the workflow created by the latest push.
+4. Wait for both build and deploy jobs to succeed.
+
+The expected site URL is `https://anonymouswalker.github.io/portfolio/`. The workflow requires GitHub Pages to be enabled for the repository; GitHub Free supports Pages for public repositories. If an earlier deployment failed before Pages was enabled, rerun it after selecting the source.
+
+The workflow sets `VITE_BASE_PATH` to the repository path. Image sources, full-size image links, the favicon, and compiled assets respect that path. Regular development and other hosts default to `/`.
+
+To check the Pages build locally:
+
+```sh
+VITE_BASE_PATH=/portfolio/ npm run build
+PLAYWRIGHT_BASE_PATH=/portfolio/ npm run test:e2e
+```
+
+### Other hosts
+
 For Vercel: import the repository, select Vite, use `npm run build` and `dist` as the output directory.
 
 For Netlify: import the repository, use `npm run build` and `dist` as the publish directory. A `netlify.toml` supplies those settings.
 
-The page uses section anchors and native dialogs, so no SPA route rewrites are needed. Deploy from the repository root. Deployment is not performed by development or build commands.
+The page uses section anchors and native dialogs, so no SPA route rewrites are needed. Deploy from the repository root.
 
-Before sharing the site, replace placeholder personal information. At your final HTTPS domain, update social metadata in `index.html` with an absolute `og:url` and absolute image URL. Some social platforms do not support SVG previews; export `public/social-card.svg` to a PNG and reference that URL for broad compatibility.
+Social metadata points to the GitHub Pages URL. Update it if using a different domain. Some social platforms do not support SVG previews; export `public/social-card.svg` to a PNG and reference that URL for broad compatibility.

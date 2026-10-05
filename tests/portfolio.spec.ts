@@ -6,7 +6,7 @@ test('renders the selected projects, real links, and responsive sections', async
   page.on('pageerror', error => errors.push(error.message))
   const failedRequests: string[] = []
   page.on('response', response => { if (response.status() >= 400) failedRequests.push(response.url()) })
-  await page.goto('/')
+  await page.goto('./')
   await expect(page).toHaveTitle('Tony Tran — Full-Stack Software Engineer')
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Hi, I’m Tony Tran.')
   for (const id of ['about', 'experience', 'projects', 'skills', 'education', 'contact']) await expect(page.locator(`#${id}`)).toBeAttached()
@@ -36,7 +36,7 @@ test('renders the selected projects, real links, and responsive sections', async
 
 test('theme follows preference and persists after reload', async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'dark' })
-  await page.goto('/')
+  await page.goto('./')
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
   await page.getByRole('button', { name: 'Switch to light theme' }).click()
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
@@ -48,7 +48,7 @@ test('theme follows preference and persists after reload', async ({ page }) => {
 })
 
 test('case studies open, trap focus, close with Escape, and restore focus', async ({ page }) => {
-  await page.goto('/')
+  await page.goto('./')
   for (const title of ['AI Draft Translation', 'BIEL Mobile App', 'ATS System']) {
     const trigger = page.getByRole('button', { name: `Read ${title} case study` })
     await trigger.click()
@@ -68,7 +68,7 @@ test('case studies open, trap focus, close with Escape, and restore focus', asyn
 })
 
 test('navigation works and mobile menu closes after selecting a section', async ({ page, isMobile }) => {
-  await page.goto('/')
+  await page.goto('./')
   if (isMobile) {
     await page.getByRole('button', { name: 'Open menu' }).click()
     await expect(page.getByRole('button', { name: 'Close menu' })).toHaveAttribute('aria-expanded', 'true')
@@ -86,7 +86,7 @@ test('navigation works and mobile menu closes after selecting a section', async 
 })
 
 test('accessibility checks pass in both themes and in the case-study dialog', async ({ page }) => {
-  await page.goto('/')
+  await page.goto('./')
   for (const theme of ['light', 'dark']) {
     await page.evaluate(theme => { document.documentElement.dataset.theme = theme }, theme)
     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze()
@@ -101,7 +101,7 @@ test('layout fits a narrow phone and tablet, with reduced motion', async ({ page
   await page.emulateMedia({ reducedMotion: 'reduce' })
   for (const width of [320, 768]) {
     await page.setViewportSize({ width, height: 900 })
-    await page.goto('/')
+    await page.goto('./')
     await page.evaluate(() => document.fonts.ready)
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
     expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto')
@@ -111,7 +111,7 @@ test('layout fits a narrow phone and tablet, with reduced motion', async ({ page
 
 test('email requires two deliberate steps, supports cancel and keyboard, and resets on reload', async ({ page }) => {
   const address = 'hoanganhtran1998@gmail.com'
-  await page.goto('/')
+  await page.goto('./')
   await expect(page.locator('body')).not.toContainText(address)
   await expect(page.locator('a[href^="mailto:"]')).toHaveCount(0)
   await page.getByRole('button', { name: 'Contact by email' }).click()
