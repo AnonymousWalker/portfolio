@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ArrowDown, ArrowRight, ArrowUpRight, Database, Download, Layers3, Mail, Menu, Moon, Sun, X } from 'lucide-react'
+import { ArrowDown, ArrowRight, ArrowUpRight, Database, Layers3, Mail, Menu, Moon, Sun, X } from 'lucide-react'
 import { Github, Linkedin } from './components/BrandIcons'
 import { profile, experience, skills, education } from './data/profile'
 import { projects, type Project } from './data/projects'
@@ -8,12 +8,6 @@ import { Avatar } from './components/Avatar'
 import { CaseStudy } from './components/CaseStudy'
 
 const sections = ['About', 'Experience', 'Projects', 'Skills', 'Education', 'Contact']
-
-function ResumeLink() {
-  return profile.resumeUrl
-    ? <a className="resume-link" href={profile.resumeUrl} download><Download size={16} /> Download résumé</a>
-    : <span className="resume-unavailable" title="Résumé will be added later"><Download size={16} /> Résumé coming soon</span>
-}
 
 function App() {
   const [dark, setDark] = useState(document.documentElement.dataset.theme === 'dark')
@@ -65,28 +59,47 @@ function App() {
         <section className="hero page-shell" id="home" aria-labelledby="hero-title">
           <Avatar />
           <div className="hero-copy">
-            <p className="hero-name">Hi, I’m {profile.name}.</p>
+            <h1 className="hero-name" id="hero-title">Hi, I’m {profile.name}.</h1>
             <p className="eyebrow hero-eyebrow"><span className="status-dot" /> {profile.title} · {profile.location}</p>
-            <h1 id="hero-title">Reliable software.<br /><span>Thoughtful engineering.</span></h1>
             <p className="hero-description">{profile.introduction}</p>
             <section className="hero-tech-stack" aria-labelledby="hero-tech-stack-title">
               <h2 id="hero-tech-stack-title">Tech stack</h2>
               <ul>{profile.techStack.map(technology => <li key={technology}>{technology}</li>)}</ul>
             </section>
-            <div className="hero-actions"><a className="button primary" href="#projects">Explore my work <ArrowDown size={17} /></a><ResumeLink /></div>
+            <div className="hero-actions"><a className="button primary" href="#projects">Explore my work <ArrowDown size={17} /></a></div>
             <div className="hero-socials"><a href={profile.github} target="_blank" rel="noopener noreferrer"><Github size={17} /> GitHub <ArrowUpRight size={13} /></a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin size={17} /> LinkedIn <ArrowUpRight size={13} /></a></div>
           </div>
-          <div className="hero-bottom"><span>5+ years of professional experience</span><span>Backend <i /> Frontend <i /> Everything in between</span><a href="#about" aria-label="Scroll to about"><ArrowDown size={18} /></a></div>
+          <div className="hero-bottom"><a className="icon-button scroll-down" href="#about" aria-label="Scroll to about"><ArrowDown size={22} aria-hidden="true" /></a></div>
         </section>
 
         <section className="section page-shell" id="about" aria-labelledby="about-title">
-          <div className="section-heading"><span className="eyebrow"><span className="section-number">01 /</span> A little about me</span><h2 id="about-title">Curious by nature.<br /><span className="serif">Practical by approach.</span></h2></div>
+          <div className="section-heading"><span className="eyebrow"><span className="section-number">01 /</span> A little about me</span><h2 id="about-title">Reliable software.<br /><span className="serif">Thoughtful engineering.</span></h2></div>
           <div className="about-grid"><div className="about-copy">{profile.about.map((paragraph, i) => <p key={paragraph} className={i === 0 ? 'lead' : ''}>{paragraph}</p>)}</div><div className="principles"><div><Layers3 size={21} /><h3>Across the stack</h3><p>Connecting the interface, the API, and the data behind it.</p></div><div><Database size={21} /><h3>Built to be understood</h3><p>Readable code, considered architecture, and explicit trade-offs.</p></div></div></div>
         </section>
 
         <section className="section page-shell" id="experience" aria-labelledby="experience-title">
           <div className="section-heading horizontal-heading"><div><span className="eyebrow"><span className="section-number">02 /</span> Experience</span><h2 id="experience-title">Real-world <span className="serif">engineering.</span></h2></div><p>Ownership across the<br />software development lifecycle.</p></div>
-          {experience.map((item, i) => <article className="experience-row" key={i}><div className="experience-meta"><span className="timeline-dot" /><p className="eyebrow">{item.dates || 'Professional experience'}</p><h3>{item.company || item.context}</h3>{item.position && <p>{item.position}</p>}<p>{item.context}</p><span className="experience-note">{!item.company || !item.dates ? 'Company and dates to be added' : ''}</span></div><div className="experience-description"><p>{item.description}</p><ul>{item.contributions.map(contribution => <li key={contribution}>{contribution}</li>)}</ul>{item.technologies.length > 0 && <div className="tags">{item.technologies.map(technology => <span key={technology}>{technology}</span>)}</div>}</div></article>)}
+          <ol className="experience-timeline" role="list" aria-label="Professional experience timeline">
+            {experience.map((item, i) => (
+              <li className="timeline-item" key={i}>
+                <span className="timeline-dot" aria-hidden="true" />
+                <article className="experience-row">
+                  <div className="experience-meta">
+                    <p className="eyebrow">{item.dates || 'Professional experience'}</p>
+                    <h3>{item.company || item.context}</h3>
+                    {item.position && <p>{item.position}</p>}
+                    <p>{item.context}</p>
+                    {(!item.company || !item.dates) && <span className="experience-note">Company and dates to be added</span>}
+                  </div>
+                  <div className="experience-description">
+                    <p>{item.description}</p>
+                    <ul>{item.contributions.map(contribution => <li key={contribution}>{contribution}</li>)}</ul>
+                    {item.technologies.length > 0 && <div className="tags">{item.technologies.map(technology => <span key={technology}>{technology}</span>)}</div>}
+                  </div>
+                </article>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section className="projects-section" id="projects" aria-labelledby="projects-title"><div className="page-shell section">
@@ -105,7 +118,7 @@ function App() {
           <div className="education-grid">{education.map(item => <article className="education-card" key={item.degree}><p className="eyebrow">{item.dates}</p><h3>{item.degree}</h3><p>{item.school}</p><span>GPA {item.gpa}</span></article>)}</div>
         </section>
 
-        <section className="contact-section" id="contact" aria-labelledby="contact-title"><div className="page-shell contact-inner"><div><span className="eyebrow"><span className="section-number">05 /</span> Let’s connect</span><h2 id="contact-title">Good work starts<br />with a <span className="serif">conversation.</span></h2><p>I’m interested in opportunities to build reliable software and contribute to a collaborative engineering team. Feel free to reach out.</p></div><div className="contact-links">{profile.email ? <a href={`mailto:${profile.email}`}><span><Mail size={19} /> Email me</span><ArrowUpRight size={20} /></a> : <div className="contact-unavailable"><span><Mail size={19} /> Email</span><span>Coming soon</span></div>}<a href={profile.linkedin} target="_blank" rel="noopener noreferrer"><span><Linkedin size={19} /> Connect on LinkedIn</span><ArrowUpRight size={20} /></a><a href={profile.github} target="_blank" rel="noopener noreferrer"><span><Github size={19} /> Explore my GitHub</span><ArrowUpRight size={20} /></a><div className="contact-resume"><ResumeLink /></div></div></div></section>
+        <section className="contact-section" id="contact" aria-labelledby="contact-title"><div className="page-shell contact-inner"><div><span className="eyebrow"><span className="section-number">05 /</span> Let’s connect</span><h2 id="contact-title">Good work starts<br />with a <span className="serif">conversation.</span></h2><p>I’m interested in opportunities to build reliable software and contribute to a collaborative engineering team. Feel free to reach out.</p></div><div className="contact-links">{profile.email ? <a href={`mailto:${profile.email}`}><span><Mail size={19} /> Email me</span><ArrowUpRight size={20} /></a> : <div className="contact-unavailable"><span><Mail size={19} /> Email</span><span>Coming soon</span></div>}<a href={profile.linkedin} target="_blank" rel="noopener noreferrer"><span><Linkedin size={19} /> Connect on LinkedIn</span><ArrowUpRight size={20} /></a><a href={profile.github} target="_blank" rel="noopener noreferrer"><span><Github size={19} /> Explore my GitHub</span><ArrowUpRight size={20} /></a></div></div></section>
       </main>
       <footer className="page-shell footer"><a className="wordmark" href="#home">Tony Tran</a><p>Built with care, React, and a little curiosity.</p><a href="#home">Back to top <ArrowUpRight size={14} /></a></footer>
       <CaseStudy project={selectedProject} onClose={() => setSelectedProject(null)} />

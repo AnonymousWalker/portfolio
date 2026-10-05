@@ -7,11 +7,10 @@ export const profile = {
   email: 'hoanganhtran1998@gmail.com' as string | null,
   github: 'https://github.com/AnonymousWalker',
   linkedin: 'https://linkedin.com/in/anh-tran-1001',
-  resumeUrl: null as string | null,
-  introduction: 'Full-stack software engineer with 5+ years of experience building reliable applications, thoughtful APIs, and tools that make everyday work easier.',
+  introduction: 'I bring 5+ years of experience building reliable applications, thoughtful APIs, and tools that make everyday work easier.',
   techStack: ['Kotlin', 'Java', 'C# / .NET', 'Python', 'SQL', 'React'],
   about: [
-    'I’m Tony, a full-stack software engineer based in Orlando. I enjoy turning complex problems into software that’s reliable, useful, and easy to maintain.',
+    'I enjoy turning complex problems into software that’s reliable, useful, and easy to maintain.',
     'At Wycliffe Associates, I own applications end to end — from understanding user needs and designing the architecture to implementation, testing, deployment, and documentation. Working with a small Agile team has given me experience across the entire development lifecycle.',
     'My work spans cross-platform desktop tools, web applications, APIs, and databases. I care about clean architecture, clear trade-offs, and developer productivity, and use AI-assisted tools to support debugging, refactoring, testing, and modernization.',
   ],

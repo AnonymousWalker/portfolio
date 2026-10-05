@@ -41,13 +41,11 @@ Tests exercise desktop and mobile layouts, theme persistence, navigation, case-s
 - `src/data/profile.ts`: name, introduction, contact URLs, professional experience, and grouped skills.
 - `src/data/projects.ts`: project descriptions, stacks, roles, architectures, case-study sections, and source references.
 - `src/styles.css`: theme colors, typography, and responsive layout.
-- `public/`: favicon, social card, and résumé assets.
+- `public/`: favicon, social card, avatar, and project images.
 
 ### Details to add later
 
-The public bio, contact email, employment history, education, and AI translation project role reflect details supplied by Tony. The résumé document itself is not stored in the repository. The BIEL contribution details and a downloadable résumé remain unavailable.
-
-Replace `public/resume.pdf` with your real résumé and set `profile.resumeUrl` to `'/resume.pdf'`. Until then, résumé links are unavailable. The included PDF is explicitly a placeholder and is not linked from the site.
+The public bio, contact email, employment history, education, and AI translation project role reflect details supplied by Tony. The résumé document itself is not stored in the repository. BIEL contribution details remain unconfirmed. The site has no résumé download feature.
 
 Set `profile.email` to enable email links. Update employment, education, and position-specific technologies in the profile data as needed.
 

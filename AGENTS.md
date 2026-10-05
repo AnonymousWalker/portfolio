@@ -21,10 +21,14 @@ The reference was inaccessible during implementation because of network restrict
 ## Content and assets
 
 - Keep public profile and project content in `src/data/profile.ts` and `src/data/projects.ts`.
-- Do not save the user's résumé document or its full verbatim text in the repository. Curated public portfolio details supplied by the user may be reflected in the content data. A real downloadable résumé remains unavailable unless the user authorizes adding it.
+- Do not save the user's résumé document or its full verbatim text in the repository. Curated public portfolio details supplied by the user may be reflected in the content data. The user removed the résumé feature; do not add résumé links, coming-soon notices, download configuration, or placeholder PDFs unless explicitly requested.
 - Preserve the user's selected projects: AI Draft Translation, BIEL Mobile App, and ATS System, unless asked to change them.
 - Attribute personal contributions only when confirmed by the user. Distinguish inspected repository features from the user's own work. Do not invent employment details, performance metrics, or project outcomes.
 
 ## Validation
 
 Run `npm run build` after application changes. For changes affecting layout, navigation, themes, images, or dialogs, run the relevant existing browser checks with `npm run test:e2e`. Investigate failures and preserve meaningful assertions. No application checks are needed for documentation-only changes.
+
+## Show the result
+
+Always show a full-page screenshot when reporting UI changes. Capture the current rendered page at native resolution with all images loaded, using `fullPage: true`, and return it through the image viewer so the user can open it, zoom, and scroll through the entire page. Also provide a clickable link to the original screenshot file. Do not substitute a viewport-only capture, cropped section, or resized thumbnail for the full-page screenshot. Include a separate full-page mobile screenshot when the change affects responsive layout. Do not present an older screenshot as the current state.
