@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { ArrowDown, ArrowRight, ArrowUpRight, Database, Layers3, Mail, Menu, Moon, Sun, X } from 'lucide-react'
+import { ArrowDown, ArrowRight, ArrowUpRight, Database, Layers3, Menu, Moon, Sun, X } from 'lucide-react'
 import { Github, Linkedin } from './components/BrandIcons'
 import { profile, experience, skills, education } from './data/profile'
 import { projects, type Project } from './data/projects'
 import { ProjectVisual } from './components/ProjectVisual'
+import { EmailContact } from './components/EmailContact'
 import { Avatar } from './components/Avatar'
 import { CaseStudy } from './components/CaseStudy'
 
@@ -118,7 +119,7 @@ function App() {
           <div className="education-grid">{education.map(item => <article className="education-card" key={item.degree}><p className="eyebrow">{item.dates}</p><h3>{item.degree}</h3><p>{item.school}</p><span>GPA {item.gpa}</span></article>)}</div>
         </section>
 
-        <section className="contact-section" id="contact" aria-labelledby="contact-title"><div className="page-shell contact-inner"><div><span className="eyebrow"><span className="section-number">05 /</span> Let’s connect</span><h2 id="contact-title">Good work starts<br />with a <span className="serif">conversation.</span></h2><p>I’m interested in opportunities to build reliable software and contribute to a collaborative engineering team. Feel free to reach out.</p></div><div className="contact-links">{profile.email ? <a href={`mailto:${profile.email}`}><span><Mail size={19} /> Email me</span><ArrowUpRight size={20} /></a> : <div className="contact-unavailable"><span><Mail size={19} /> Email</span><span>Coming soon</span></div>}<a href={profile.linkedin} target="_blank" rel="noopener noreferrer"><span><Linkedin size={19} /> Connect on LinkedIn</span><ArrowUpRight size={20} /></a><a href={profile.github} target="_blank" rel="noopener noreferrer"><span><Github size={19} /> Explore my GitHub</span><ArrowUpRight size={20} /></a></div></div></section>
+        <section className="contact-section" id="contact" aria-labelledby="contact-title"><div className="page-shell contact-inner"><div><span className="eyebrow"><span className="section-number">05 /</span> Let’s connect</span><h2 id="contact-title">Good work starts<br />with a <span className="serif">conversation.</span></h2><p>I’m interested in opportunities to build reliable software and contribute to a collaborative engineering team. Feel free to reach out.</p></div><div className="contact-links"><EmailContact /><a href={profile.linkedin} target="_blank" rel="noopener noreferrer"><span><Linkedin size={19} /> Connect on LinkedIn</span><ArrowUpRight size={20} /></a><a href={profile.github} target="_blank" rel="noopener noreferrer"><span><Github size={19} /> Explore my GitHub</span><ArrowUpRight size={20} /></a></div></div></section>
       </main>
       <footer className="page-shell footer"><a className="wordmark" href="#home">Tony Tran</a><p>Built with care, React, and a little curiosity.</p><a href="#home">Back to top <ArrowUpRight size={14} /></a></footer>
       <CaseStudy project={selectedProject} onClose={() => setSelectedProject(null)} />

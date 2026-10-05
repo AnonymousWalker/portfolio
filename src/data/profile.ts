@@ -4,7 +4,8 @@ export const profile = {
   title: 'Full-Stack Software Engineer',
   location: 'Orlando, FL',
   avatar: { src: '/my-avatar.png' as string | null, alt: 'Portrait of Tony Tran' },
-  email: 'hoanganhtran1998@gmail.com' as string | null,
+  // Obfuscation limits plain-text scraping; this is not encryption or access control.
+  emailEncoded: 'aG9hbmdhbmh0cmFuMTk5OEBnbWFpbC5jb20=' as string | null,
   github: 'https://github.com/AnonymousWalker',
   linkedin: 'https://linkedin.com/in/anh-tran-1001',
   introduction: 'I bring 5+ years of experience building reliable applications, thoughtful APIs, and tools that make everyday work easier.',

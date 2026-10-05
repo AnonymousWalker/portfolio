@@ -20,6 +20,7 @@ The reference was inaccessible during implementation because of network restrict
 
 ## Content and assets
 
+- Preserve the two-step email reveal: never render the address or a `mailto:` link before confirmation. Keep the address obfuscated in the client data, and do not describe this as secure encryption or bot verification.
 - Keep public profile and project content in `src/data/profile.ts` and `src/data/projects.ts`.
 - Do not save the user's résumé document or its full verbatim text in the repository. Curated public portfolio details supplied by the user may be reflected in the content data. The user removed the résumé feature; do not add résumé links, coming-soon notices, download configuration, or placeholder PDFs unless explicitly requested.
 - Preserve the user's selected projects: AI Draft Translation, BIEL Mobile App, and ATS System, unless asked to change them.
