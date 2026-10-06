@@ -34,12 +34,13 @@ export function CaseStudy({ project, onClose }: { project: Project | null; onClo
         <div className="tags">{project.stack.map(item => <span key={item}>{item}</span>)}</div>
         <ProjectVisual project={project} />
         <div className="case-role"><h3>My role</h3><p>{project.role}</p></div>
-        <div className="architecture" aria-label="Conceptual architecture">
+        <div className={`architecture${project.architectureLayout === 'vertical' ? ' architecture-vertical' : ''}`} aria-label="Conceptual architecture">
           <p className="eyebrow">Conceptual architecture</p>
           <div>{project.architecture.map((node, i) => <div className="architecture-step" key={node}><span>{node}</span>{i < project.architecture.length - 1 && <ArrowRight size={18} aria-hidden="true" />}</div>)}</div>
         </div>
         {project.sections.map(section => <section className="case-section" key={section.title}><h3>{section.title}</h3><p>{section.text}</p></section>)}
         {project.github && <a className="button primary" href={project.github} target="_blank" rel="noopener noreferrer">Explore repository <ArrowUpRight size={17} /></a>}
+        {project.backendGithub && <a className="button secondary" href={project.backendGithub} target="_blank" rel="noopener noreferrer">Explore backend <ArrowUpRight size={17} /></a>}
         <button className="text-button case-back" onClick={onClose}>Back to selected work <ArrowRight size={16} /></button>
       </div>
     </dialog>

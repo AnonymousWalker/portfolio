@@ -169,7 +169,7 @@ h2 { font-size: clamp(36px, 4vw, 50px); line-height: 1.1; letter-spacing: -2.1px
 .footer .wordmark { font-size: 16px; }
 .footer p, .footer > a:last-child { color: var(--muted); font-size: 11px; }
 .footer > a:last-child { display: flex; align-items: center; gap: 6px; min-height: 44px; }
-.case-dialog { border: 1px solid var(--line); border-radius: 24px; background: var(--bg); color: var(--text); width: min(800px, calc(100% - 32px)); max-height: calc(100dvh - 48px); padding: 0; overscroll-behavior: contain; }
+.case-dialog { margin: auto; border: 1px solid var(--line); border-radius: 24px; background: var(--bg); color: var(--text); width: min(800px, calc(100% - 32px)); max-height: calc(100dvh - 48px); padding: 0; overscroll-behavior: contain; }
 .case-dialog::backdrop { background: #00000066; backdrop-filter: blur(8px); }
 .case-content { padding: 30px 42px 40px; }
 .case-top { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
@@ -188,6 +188,9 @@ h2 { font-size: clamp(36px, 4vw, 50px); line-height: 1.1; letter-spacing: -2.1px
 .architecture-step { display: flex; flex: 1; align-items: center; gap: 8px; min-width: 0; }
 .architecture-step span { background: var(--surface); font-size: 12px; text-align: center; padding: 15px 8px; border-radius: 9px; width: 100%; }
 .architecture-step:last-child { flex: .8; }
+.architecture-vertical > div { flex-direction: column; }
+.architecture-vertical .architecture-step { flex-direction: column; }
+.architecture-vertical .architecture-step svg { transform: rotate(90deg); }
 .case-section { margin-top: 30px; }
 .case-content > .button { margin-top: 30px; }
 .case-back { display: flex; margin-top: 18px; }
