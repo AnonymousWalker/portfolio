@@ -45,7 +45,7 @@ test('renders the selected projects, real links, and responsive sections', async
     await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true)
   }
   await expect(page.locator('.image-placeholder')).toHaveCount(0)
-  for (const name of ['AI Draft Translation', 'BIEL Mobile App', 'ATS System']) await expect(cards.getByRole('heading', { name, exact: true })).toBeVisible()
+  for (const name of ['AI Document Translation', 'BIEL Mobile App', 'ATS System']) await expect(cards.getByRole('heading', { name, exact: true })).toBeVisible()
   await expect(page.getByRole('link', { name: 'BIEL Mobile App on GitHub' })).toHaveAttribute('href', 'https://github.com/Bible-Translation-Tools/BIEL-mobile-app')
   await expect(page.locator('a[href^="mailto:"]')).toHaveCount(0)
   await expect(page.getByRole('button', { name: 'Contact by email' })).toBeVisible()
@@ -74,7 +74,7 @@ test('theme follows preference and persists after reload', async ({ page }) => {
 
 test('case studies open, trap focus, close with Escape, and restore focus', async ({ page }) => {
   await page.goto('./')
-  for (const title of ['AI Draft Translation', 'BIEL Mobile App', 'ATS System']) {
+  for (const title of ['AI Document Translation', 'BIEL Mobile App', 'ATS System']) {
     const trigger = page.getByRole('button', { name: `Read ${title} case study` })
     await trigger.click()
     const dialog = page.getByRole('dialog')

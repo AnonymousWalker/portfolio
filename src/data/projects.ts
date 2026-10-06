@@ -42,10 +42,10 @@ export const projects: Project[] = [
     source: { commit: '6401e276ea12ec3a5b4954136766c638cfc917d8', files: ['src/main/java/com/example/atssystem/analysis/AnalysisService.java', 'src/main/java/com/example/atssystem/analysis/scoring/MatchScorer.java', 'src/main/java/com/example/atssystem/cleanup/TemporaryDataCleanupService.java'] },
   },
   {
-    id: 'ai-draft-translation', number: '01', title: 'AI Draft Translation', category: 'Translation web application',
+    id: 'ai-draft-translation', number: '01', title: 'AI Document Translation', category: 'Translation web application',
     images: [
       { src: '/AI-doc-translation.png', alt: 'Document Translation Tool with language selection, file upload, and completed translation jobs', label: 'Translation workspace', width: 1278, height: 900 },
-      { src: '/AI-doc-icon.png', alt: 'AI Draft Translation app icon with Latin and Japanese characters', label: 'App icon', width: 512, height: 512 },
+      { src: '/AI-doc-icon.png', alt: 'AI Document Translation app icon with Latin and Japanese characters', label: 'App icon', width: 512, height: 512 },
     ],
     description: 'An interface for text and batch translation, with language selection, preserved terms, and progress tracking for long-running jobs.',
     focus: 'Async workflows · API integration · Translation UX',
@@ -54,7 +54,7 @@ export const projects: Project[] = [
     backendGithub: 'https://github.com/Bible-Translation-Tools/ai-server-translation',
     role: 'Built and deployed an AI document translation web application and cloud services in 2025, supporting DOCX, PDF, and text files.',
     architectureLayout: 'vertical',
-    architecture: ['Browser → POST /jobs · files + metadata JSON', 'FastAPI → validate uploads · save inputs · SQLite: queued', 'In-memory queue → single worker · SQLite: processing', 'ClearML queue placeholder → document translators + NLLB TranslationEngine', 'Output files / ZIP → SQLite: completed · poll status + download result'],
+    architecture: ['Client', 'API server', 'Job queue', 'Background worker', 'Translation engine', 'Results & download'],
     sections: [
       { title: 'Overview', text: 'A React and TypeScript interface paired with a Python and FastAPI backend and SQLite persistence. Users can translate text or submit multiple files to one or more target languages. A shared NLLB TranslationEngine powers document-specific translators behind a background job workflow.' },
       { title: 'Long-running workflows', text: 'The frontend API client uses a five-minute request timeout. Batch submission returns a job identifier and status URL; a custom queue hook polls status, tracks progress, and stops polling when a job completes, fails, or encounters an error.' },

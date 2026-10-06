@@ -1,6 +1,6 @@
 # Tony Tran — Portfolio
 
-A responsive single-page engineering portfolio built with React, TypeScript, Vite, Tailwind CSS, and Lucide icons. Uses an Apple-inspired visual hierarchy with generous spacing, system typography, a translucent navigation bar, a portrait, and project image galleries. Includes light/dark themes, mobile navigation, and accessible case-study dialogs for AI Draft Translation, BIEL Mobile App, and ATS System.
+A responsive single-page engineering portfolio built with React, TypeScript, Vite, Tailwind CSS, and Lucide icons. Uses an Apple-inspired visual hierarchy with generous spacing, system typography, a translucent navigation bar, a portrait, and project image galleries. Includes light/dark themes, mobile navigation, and accessible case-study dialogs for AI Document Translation, BIEL Mobile App, and ATS System.
 
 ## Develop
 
