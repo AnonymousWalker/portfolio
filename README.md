@@ -45,7 +45,7 @@ Tests exercise desktop and mobile layouts, theme persistence, navigation, case-s
 
 ### Details to add later
 
-The public bio, contact email, employment history, education, and AI translation project role reflect details supplied by Tony. The résumé document itself is not stored in the repository. BIEL contribution details remain unconfirmed. The site has no résumé download feature.
+The public bio, contact email, employment history, education, and AI translation project role reflect details supplied by Tony, who also confirmed end-to-end ownership of BIEL Mobile App. The résumé document itself is not stored in the repository. The site has no résumé download feature.
 
 The contact section requires two deliberate actions: “Contact by email”, then “Show email address”. The address and `mailto:` link are created only after confirmation and hidden again on reload. Cancel and Escape return to the initial state. `profile.emailEncoded` stores the address as Base64; this is obfuscation against simple scrapers, not encryption, human verification, or secure access control. A determined scraper can decode the client-side data. To change the address, Base64-encode the new address and update that field; set it to `null` to omit email contact. Update employment, education, and position-specific technologies in the profile data as needed.
 

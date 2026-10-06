@@ -16,6 +16,8 @@
   --accent-soft: #e8f2ff;
   --line: #dedee3;
   --header: #ffffffd9;
+  --nav-height: 68px;
+  --github-brand: #181717;
 }
 :root[data-theme='dark'] {
   color-scheme: dark;
@@ -30,6 +32,7 @@
   --accent-soft: #152335;
   --line: #353538;
   --header: #161617d9;
+  --github-brand: #ffffff;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 100px; }
@@ -45,7 +48,7 @@ svg { flex-shrink: 0; }
 .skip-link { position: fixed; top: -100px; left: 20px; z-index: 100; background: #0066cc; color: white; padding: 12px 20px; border-radius: 24px; }
 .skip-link:focus { top: 12px; }
 .site-header { position: sticky; top: 0; z-index: 20; background: var(--header); backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid var(--line); }
-.nav-shell { display: flex; align-items: center; min-height: 68px; gap: 32px; }
+.nav-shell { display: flex; align-items: center; min-height: var(--nav-height); gap: 32px; }
 .wordmark { font-size: 20px; letter-spacing: -.6px; font-weight: 650; white-space: nowrap; }
 .navigation { display: flex; gap: 26px; margin-left: auto; font-size: 12px; }
 .navigation a { padding: 15px 0; position: relative; color: var(--muted); transition: color .2s; }
@@ -57,7 +60,16 @@ svg { flex-shrink: 0; }
 .menu-toggle { display: none; }
 .eyebrow { font-size: 13px; line-height: 1.6; font-weight: 550; color: var(--muted); }
 .section-number { display: none; }
-.hero { text-align: center; padding-top: 68px; }
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - var(--nav-height) - 1px);
+  min-height: calc(100dvh - var(--nav-height) - 1px);
+  text-align: center;
+  padding-block: 68px;
+}
+.hero > * { flex-shrink: 0; }
 .avatar { width: fit-content; margin: 0 auto 25px; }
 .avatar-frame { width: 112px; height: 112px; border-radius: 50%; background: var(--subtle); border: 1px solid var(--line); overflow: hidden; }
 .avatar-frame img { width: 100%; height: 100%; object-fit: cover; }
@@ -72,10 +84,10 @@ svg { flex-shrink: 0; }
 .button:hover { transform: translateY(-1px); }
 .primary { color: #fff; background: #0066cc; }
 .primary:hover { background: #005bb5; }
-.hero-socials { display: flex; justify-content: center; gap: 24px; margin-top: 27px; }
-.hero-socials a { display: flex; align-items: center; gap: 7px; color: var(--muted); font-size: 12px; min-height: 36px; }
-.hero-socials a:hover { color: var(--accent); }
-.hero-bottom { display: flex; justify-content: center; margin-top: 40px; padding-block: 18px; }
+.hero-socials { display: flex; justify-content: center; gap: 16px; margin-top: 27px; }
+.hero-socials .github-link { color: var(--github-brand); }
+.hero-socials .linkedin-link { color: #0a66c2; }
+.hero-bottom { display: flex; justify-content: center; margin-top: 40px; }
 .scroll-down { width: 48px; height: 48px; background: var(--subtle); color: var(--muted); }
 .scroll-down:hover { color: var(--accent); background: var(--accent-soft); }
 .section { padding-block: 100px; }
@@ -123,7 +135,6 @@ h2 { font-size: clamp(36px, 4vw, 50px); line-height: 1.1; letter-spacing: -2.1px
 .text-button { min-height: 44px; padding: 8px 0; display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 500; color: var(--accent); }
 .text-button:hover { text-decoration: underline; text-underline-offset: 4px; }
 .project-card-links > a { color: var(--muted); }
-.projects-footnote { font-size: 12px; line-height: 1.7; color: var(--muted); margin-top: 26px; }
 .project-gallery { min-width: 0; display: grid; grid-template-columns: 1fr .72fr; align-items: start; gap: 12px; }
 .project-card > .project-gallery { grid-column: 2; grid-row: 1; align-items: center; }
 .project-image { min-width: 0; }
@@ -194,7 +205,8 @@ h2 { font-size: clamp(36px, 4vw, 50px); line-height: 1.1; letter-spacing: -2.1px
 @media (max-width: 760px) {
   html { scroll-padding-top: 85px; }
   .page-shell, .nav-shell { width: calc(100% - 40px); }
-  .nav-shell { min-height: 64px; gap: 16px; }
+  :root { --nav-height: 64px; }
+  .nav-shell { gap: 16px; }
   .wordmark { font-size: 18px; }
   .nav-actions { margin-left: auto; }
   .menu-toggle { display: inline-flex; }
@@ -202,7 +214,7 @@ h2 { font-size: clamp(36px, 4vw, 50px); line-height: 1.1; letter-spacing: -2.1px
   .navigation.open { display: flex; }
   .navigation a { padding: 13px 0; font-size: 16px; }
   .navigation a[aria-current]::after { left: auto; right: 6px; bottom: 20px; }
-  .hero { padding-top: 45px; }
+  .hero { padding-block: 45px; }
   .avatar-frame { width: 96px; height: 96px; }
   .hero-name { font-size: 32px; letter-spacing: -1px; }
   .hero-eyebrow { font-size: 12px; margin-bottom: 22px; }

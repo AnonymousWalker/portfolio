@@ -1,6 +1,31 @@
 import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 
+test('hero fills large viewports and keeps its content accessible on short screens', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'Viewport sizes are exercised in the desktop browser project.')
+  for (const viewport of [{ width: 1920, height: 1080 }, { width: 2560, height: 1440 }, { width: 390, height: 844 }, { width: 320, height: 600 }]) {
+    await page.setViewportSize(viewport)
+    await page.goto('./')
+    const bounds = await page.evaluate(() => ({
+      hero: document.querySelector('#home')!.getBoundingClientRect().toJSON(),
+      avatar: document.querySelector('.avatar')!.getBoundingClientRect().toJSON(),
+      about: document.querySelector('#about')!.getBoundingClientRect().toJSON(),
+      arrow: document.querySelector('.scroll-down')!.getBoundingClientRect().toJSON(),
+      socials: document.querySelector('.hero-socials')!.getBoundingClientRect().toJSON(),
+    }))
+    expect(bounds.about.top).toBeGreaterThanOrEqual(viewport.height)
+    expect(bounds.arrow.top).toBeGreaterThan(bounds.socials.bottom)
+    expect(bounds.arrow.bottom).toBeLessThanOrEqual(bounds.hero.bottom)
+    const spaceAbove = bounds.avatar.top - bounds.hero.top
+    const spaceBelow = bounds.hero.bottom - bounds.arrow.bottom
+    expect(Math.abs(spaceAbove - spaceBelow)).toBeLessThan(1)
+    if (viewport.width >= 1920) {
+      expect(bounds.hero.bottom).toBe(viewport.height)
+      await expect(page.getByRole('link', { name: 'Scroll to about' })).toBeInViewport()
+    }
+  }
+})
+
 test('renders the selected projects, real links, and responsive sections', async ({ page }) => {
   const errors: string[] = []
   page.on('pageerror', error => errors.push(error.message))

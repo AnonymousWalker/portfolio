@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ArrowDown, ArrowRight, ArrowUpRight, Database, Layers3, Menu, Moon, Sun, X } from 'lucide-react'
-import { Github, Linkedin } from './components/BrandIcons'
+import { Github, Linkedin, GithubMark, LinkedinMark, GooglePlay } from './components/BrandIcons'
 import { profile, experience, skills, education } from './data/profile'
 import { projects, type Project } from './data/projects'
 import { ProjectVisual } from './components/ProjectVisual'
@@ -46,7 +46,7 @@ function App() {
       <a className="skip-link" href="#main">Skip to content</a>
       <header className="site-header">
         <div className="nav-shell">
-          <a className="wordmark" href="#home" aria-label="Tony Tran, home" onClick={() => setMenuOpen(false)}>Tony Tran</a>
+          <a className="wordmark" href="#home" aria-label={`${profile.headerName}, home`} onClick={() => setMenuOpen(false)}>{profile.headerName}</a>
           <nav className={menuOpen ? 'navigation open' : 'navigation'} id="primary-navigation" aria-label="Main navigation">
             {sections.map(label => <a href={`#${label.toLowerCase()}`} key={label} aria-current={active === label.toLowerCase() ? 'location' : undefined} onClick={() => setMenuOpen(false)}>{label}</a>)}
           </nav>
@@ -67,8 +67,11 @@ function App() {
               <h2 id="hero-tech-stack-title">Tech stack</h2>
               <ul>{profile.techStack.map(technology => <li key={technology}>{technology}</li>)}</ul>
             </section>
-            <div className="hero-actions"><a className="button primary" href="#projects">Explore my work <ArrowDown size={17} /></a></div>
-            <div className="hero-socials"><a href={profile.github} target="_blank" rel="noopener noreferrer"><Github size={17} /> GitHub <ArrowUpRight size={13} /></a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin size={17} /> LinkedIn <ArrowUpRight size={13} /></a></div>
+            <div className="hero-actions"><a className="button primary" href="#projects">Explore my work</a></div>
+            <div className="hero-socials">
+              <a className="icon-button github-link" href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="Tony Tran on GitHub" title="GitHub"><GithubMark /></a>
+              <a className="icon-button linkedin-link" href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Tony Tran on LinkedIn" title="LinkedIn"><LinkedinMark /></a>
+            </div>
           </div>
           <div className="hero-bottom"><a className="icon-button scroll-down" href="#about" aria-label="Scroll to about"><ArrowDown size={22} aria-hidden="true" /></a></div>
         </section>
@@ -105,8 +108,7 @@ function App() {
 
         <section className="projects-section" id="projects" aria-labelledby="projects-title"><div className="page-shell section">
           <div className="section-heading horizontal-heading"><div><span className="eyebrow"><span className="section-number">03 /</span> Selected work</span><h2 id="projects-title">Problems worth <span className="serif">solving.</span></h2></div><p>A closer look at the work,<br />and the thinking behind it.</p></div>
-          <div className="project-grid">{projects.map(project => <article className="project-card" key={project.id}><ProjectVisual project={project} /><div className="project-card-content"><div className="project-card-meta"><span>{project.category}</span><span>{project.number}</span></div><h3>{project.title}</h3><p>{project.description}</p><div className="tags">{project.stack.map(item => <span key={item}>{item}</span>)}</div><p className="project-focus">{project.focus}</p><div className="project-card-links"><button className="text-button" onClick={() => setSelectedProject(project)} aria-label={`Read ${project.title} case study`}>Read case study <ArrowRight size={16} /></button>{project.github && <a className="icon-button" href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} on GitHub`}><Github size={19} /></a>}</div></div></article>)}</div>
-          <p className="projects-footnote">Project implementations checked against source. My role in BIEL Mobile App is still to be confirmed.</p>
+          <div className="project-grid">{projects.map(project => <article className="project-card" key={project.id}><ProjectVisual project={project} /><div className="project-card-content"><div className="project-card-meta"><span>{project.category}</span><span>{project.number}</span></div><h3>{project.title}</h3><p>{project.description}</p><div className="tags">{project.stack.map(item => <span key={item}>{item}</span>)}</div><p className="project-focus">{project.focus}</p><div className="project-card-links"><button className="text-button" onClick={() => setSelectedProject(project)} aria-label={`Read ${project.title} case study`}>Read case study <ArrowRight size={16} /></button>{project.github && <a className="icon-button" href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} on GitHub`}><Github size={19} /></a>}{project.googlePlay && <a className="icon-button" href={project.googlePlay} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} on Google Play`} title="Get it on Google Play"><GooglePlay /></a>}</div></div></article>)}</div>
         </div></section>
 
         <section className="section page-shell" id="skills" aria-labelledby="skills-title">

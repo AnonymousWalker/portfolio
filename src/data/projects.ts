@@ -9,6 +9,7 @@ export interface Project {
   stack: string[]
   images: { src: string | null; alt: string; label: string; width?: number; height?: number }[]
   github?: string
+  googlePlay?: string
   role: string
   reviewNote?: string
   architecture: string[]
@@ -69,7 +70,8 @@ export const projects: Project[] = [
     focus: 'Offline data · Mobile architecture · Audio playback',
     stack: ['React Native', 'Expo', 'TypeScript', 'SQLite'],
     github: 'https://github.com/Bible-Translation-Tools/BIEL-mobile-app',
-    role: 'Personal contributions to be confirmed. Features described here are verified in the repository, not attributed solely to me.',
+    googlePlay: 'https://play.google.com/store/apps/details?id=org.bibletranslationtools.biel',
+    role: 'Owned and built the app end to end, including its architecture, Scripture reader, offline downloads, and audio playback.',
     architecture: ['Expo reader', 'API / local fallback', 'SQLite + files'],
     sections: [
       { title: 'Overview', text: 'An Expo and React Native mobile app for reading Scripture and listening to chapter audio. Expo Router organizes screens, while service modules handle content retrieval, downloads, and audio playback.' },

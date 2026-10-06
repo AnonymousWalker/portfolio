@@ -1,6 +1,7 @@
 // Public portfolio content. The résumé document is not stored in this repository.
 export const profile = {
   name: 'Tony Tran',
+  headerName: 'Tony Anh Tran',
   title: 'Full-Stack Software Engineer',
   location: 'Orlando, FL',
   avatar: { src: '/my-avatar.png' as string | null, alt: 'Portrait of Tony Tran' },
