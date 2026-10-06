@@ -94,4 +94,4 @@ For Netlify: import the repository, use `npm run build` and `dist` as the publis
 
 The page uses section anchors and native dialogs, so no SPA route rewrites are needed. Deploy from the repository root.
 
-Social metadata points to the GitHub Pages URL. Update it if using a different domain. Some social platforms do not support SVG previews; export `public/social-card.svg` to a PNG and reference that URL for broad compatibility.
+Social metadata is included in the initial HTML so sharing services can read it without running JavaScript. Open Graph and Twitter cards use the 1200 × 630 PNG at `public/social-card.png`; the editable source is `public/social-card.svg`. Regenerate the PNG when changing the card design. Metadata points to the GitHub Pages URL; update the canonical URL, Open Graph URL, and both image URLs if using a different domain. After deployment, sharing services may cache an older preview; use their link inspection or refresh tool when available.
