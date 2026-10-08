@@ -74,11 +74,11 @@ export const experience: Experience[] = [
 
 export const skills = [
   { name: 'Backend', items: ['C# / .NET', 'Kotlin', 'Java', 'Python', 'RESTful APIs'] },
-  { name: 'Frontend & mobile', items: ['JavaScript', 'TypeScript', 'React', 'React Native', 'HTML / CSS', 'Bootstrap', 'jQuery'] },
+  { name: 'Frontend & mobile', items: ['React', 'React Native', 'TypeScript', 'HTML', 'CSS'] },
   { name: 'Data & systems', items: ['SQL', 'MySQL', 'SQL Server', 'SQLite', 'PostgreSQL', 'Multithreading', 'Caching'] },
   { name: 'Delivery & cloud', items: ['Git', 'Docker', 'GitHub Actions', 'Jenkins', 'AWS', 'CI/CD'] },
-  { name: 'AI & developer tools', items: ['Claude', 'Cursor', 'ChatGPT', 'AI agents', 'LLM applications'] },
-  { name: 'Engineering practices', items: ['Clean architecture', 'Systems design', 'Design patterns', 'Automated testing', 'Debugging', 'Code review', 'Documentation', 'Agile / SDLC'] },
+  { name: 'AI & developer tools', items: ['Claude', 'Cursor', 'ChatGPT'] },
+  { name: 'Engineering practices', items: ['System design', 'Clean architecture', 'Design patterns', 'Automated testing', 'Debugging', 'Code review', 'Agile framework'] },
 ]
 
 export const education = [

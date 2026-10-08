@@ -113,7 +113,7 @@ function App() {
 
         <section className="section page-shell" id="skills" aria-labelledby="skills-title">
           <div className="section-heading"><span className="eyebrow"><span className="section-number">04 /</span> My toolkit</span><h2 id="skills-title">The right tools.<br /><span className="serif">A solid foundation.</span></h2></div>
-          <div className="skills-grid">{skills.map((group, index) => <div className="skill-group" key={group.name}><span className="skill-index">0{index + 1}</span><h3>{group.name}</h3><ul>{group.items.map(skill => <li key={skill}>{skill}</li>)}</ul></div>)}</div>
+          <dl className="skills-list">{skills.map(group => <div className="skill-row" key={group.name}><dt>{group.name}</dt><dd><ul>{group.items.map(skill => <li key={skill}>{skill}</li>)}</ul></dd></div>)}</dl>
         </section>
 
         <section className="section page-shell" id="education" aria-labelledby="education-title">
