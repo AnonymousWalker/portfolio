@@ -326,3 +326,23 @@ h2 { font-size: clamp(36px, 4vw, 50px); line-height: 1.1; letter-spacing: -2.1px
 .email-revealed > p { color: var(--muted); font-size: 12px; padding-top: 18px; }
 .email-revealed .email-row { padding-top: 12px; }
 .email-address { overflow-wrap: anywhere; }
+
+/* A quiet hero glow and brief, optional motion. */
+.hero { position: relative; isolation: isolate; }
+.hero::before { content: ''; position: absolute; z-index: -1; pointer-events: none; inset: 0; background: radial-gradient(ellipse 46% 42% at 50% 38%, #0066cc0d 0%, #0066cc05 52%, transparent 100%); }
+[data-theme='dark'] .hero::before { background: radial-gradient(ellipse 46% 42% at 50% 38%, #2997ff14 0%, #2997ff08 52%, transparent 100%); }
+@keyframes soft-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes avatar-enter { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: no-preference) {
+  .hero > .avatar { animation: avatar-enter .45s ease-out both; }
+  .hero-copy { animation: soft-enter .5s ease-out both; }
+  .heading-entered { animation: soft-enter .4s ease-out; }
+  .project-card { transition: transform .2s ease, box-shadow .2s ease; }
+  .project-card .project-image img { transition: transform .25s ease; }
+  @media (hover: hover) and (pointer: fine) {
+    .project-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px #0000000d; }
+    [data-theme='dark'] .project-card:hover { box-shadow: 0 12px 32px #00000040; }
+    .project-card .project-image-link { overflow: hidden; }
+    .project-card .project-image-link:hover img { transform: scale(1.015); }
+  }
+}

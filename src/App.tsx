@@ -32,6 +32,22 @@ function App() {
   }, [])
 
   useEffect(() => {
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    if (motion.matches) return
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return
+        entry.target.classList.add('heading-entered')
+        observer.unobserve(entry.target)
+      })
+    }, { threshold: 0.2 })
+    document.querySelectorAll('.section-heading').forEach(heading => observer.observe(heading))
+    const stopMotion = () => { if (motion.matches) observer.disconnect() }
+    motion.addEventListener('change', stopMotion)
+    return () => { observer.disconnect(); motion.removeEventListener('change', stopMotion) }
+  }, [])
+
+  useEffect(() => {
     if (!menuOpen) return
     const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') { setMenuOpen(false); document.querySelector<HTMLButtonElement>('.menu-toggle')?.focus() } }
     const media = window.matchMedia('(min-width: 761px)')
