@@ -20,6 +20,7 @@ export const profile = {
 
 export interface Experience {
   company: string | null
+  companyUrl?: string
   position: string | null
   dates: string | null
   context: string
@@ -31,6 +32,7 @@ export interface Experience {
 export const experience: Experience[] = [
   {
     company: 'Wycliffe Associates',
+    companyUrl: 'https://wycliffeassociates.org/about/our-mission/',
     position: 'Software Developer',
     dates: 'Oct 2022 — Present',
     context: 'Orlando, FL · On-site',
@@ -46,6 +48,7 @@ export const experience: Experience[] = [
   },
   {
     company: 'Wycliffe Associates',
+    companyUrl: 'https://wycliffeassociates.org/about/our-mission/',
     position: 'Software Developer Intern',
     dates: 'Jun 2020 — Nov 2021',
     context: 'Orlando, FL · Hybrid',
@@ -59,6 +62,7 @@ export const experience: Experience[] = [
   },
   {
     company: 'Amaris Consulting',
+    companyUrl: 'https://amaris.com/',
     position: 'Web Development Intern',
     dates: 'Jan 2018 — Jun 2018',
     context: 'Ho Chi Minh City, Vietnam',

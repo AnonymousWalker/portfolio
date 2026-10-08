@@ -106,7 +106,7 @@ function App() {
                 <article className="experience-row">
                   <div className="experience-meta">
                     <p className="eyebrow">{item.dates || 'Professional experience'}</p>
-                    <h3>{item.company || item.context}</h3>
+                    <h3>{item.companyUrl ? <a className="company-link" href={item.companyUrl} target="_blank" rel="noopener noreferrer">{item.company}<ArrowUpRight size={15} aria-hidden="true" /></a> : item.company || item.context}</h3>
                     {item.position && <p>{item.position}</p>}
                     <p>{item.context}</p>
                     {(!item.company || !item.dates) && <span className="experience-note">Company and dates to be added</span>}

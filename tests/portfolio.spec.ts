@@ -92,6 +92,42 @@ test('case studies open, trap focus, close with Escape, and restore focus', asyn
   }
 })
 
+test('project images open in an accessible gallery viewer', async ({ page }) => {
+  await page.goto('./')
+  const trigger = page.getByRole('button', { name: 'View AI Document Translation translation workspace in image viewer' }).first()
+  await trigger.click()
+
+  const viewer = page.getByRole('dialog', { name: 'AI Document Translation' })
+  await expect(viewer).toBeVisible()
+  await expect(viewer.getByRole('img')).toHaveAttribute('alt', /Document Translation Tool/)
+  await expect(viewer.getByText('1 / 2')).toBeVisible()
+  await expect(viewer.getByRole('button', { name: 'Close image viewer' })).toBeFocused()
+
+  await page.keyboard.press('ArrowRight')
+  await expect(viewer.getByText('App icon')).toBeVisible()
+  await expect(viewer.getByText('2 / 2')).toBeVisible()
+  await viewer.getByRole('button', { name: 'View image at full size' }).click()
+  await expect(viewer.locator('.viewer-image')).toHaveClass(/zoomed/)
+
+  await page.keyboard.press('Escape')
+  await expect(viewer).toHaveCount(0)
+  await expect(trigger).toBeFocused()
+  await expect(page).toHaveURL(/\/$/)
+
+  await page.getByRole('button', { name: 'Read AI Document Translation case study' }).click()
+  const caseStudy = page.getByRole('dialog', { name: 'AI Document Translation' })
+  const caseImage = caseStudy.getByRole('button', { name: 'View AI Document Translation translation workspace in image viewer' })
+  await caseImage.click()
+  const nestedViewer = page.locator('.image-viewer')
+  await expect(nestedViewer).toBeVisible()
+  const accessibility = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze()
+  expect(accessibility.violations).toEqual([])
+  await page.keyboard.press('Escape')
+  await expect(nestedViewer).toHaveCount(0)
+  await expect(caseStudy).toBeVisible()
+  await expect(caseImage).toBeFocused()
+})
+
 test('navigation works and mobile menu closes after selecting a section', async ({ page, isMobile }) => {
   await page.goto('./')
   if (isMobile) {
