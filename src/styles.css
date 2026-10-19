@@ -177,6 +177,9 @@ h2 { font-size: clamp(36px, 4vw, 50px); line-height: 1.1; letter-spacing: -2.1px
 .footer p, .footer > a:last-child { color: var(--muted); font-size: 11px; }
 .footer > a:last-child { display: flex; align-items: center; gap: 6px; min-height: 44px; }
 .case-dialog { margin: auto; border: 1px solid var(--line); border-radius: 24px; background: var(--bg); color: var(--text); width: min(800px, calc(100% - 32px)); max-height: calc(100dvh - 48px); padding: 0; overscroll-behavior: contain; }
+@media (min-width: 1000px) {
+  .case-dialog { width: min(1040px, calc(100% - 48px)); }
+}
 .case-dialog::backdrop { background: #00000066; backdrop-filter: blur(8px); }
 .case-content { padding: 30px 42px 40px; }
 .case-top { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
