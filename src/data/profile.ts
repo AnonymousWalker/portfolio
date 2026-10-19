@@ -2,7 +2,7 @@
 export const profile = {
   name: 'Tony Tran',
   headerName: 'Tony Anh Tran',
-  title: 'Full-Stack Software Engineer',
+  title: 'Software Engineer',
   location: 'Orlando, FL',
   avatar: { src: '/my-avatar.png' as string | null, alt: 'Portrait of Tony Tran' },
   // Obfuscation limits plain-text scraping; this is not encryption or access control.

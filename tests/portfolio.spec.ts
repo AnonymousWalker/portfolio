@@ -32,7 +32,7 @@ test('renders the selected projects, real links, and responsive sections', async
   const failedRequests: string[] = []
   page.on('response', response => { if (response.status() >= 400) failedRequests.push(response.url()) })
   await page.goto('./')
-  await expect(page).toHaveTitle('Tony Tran — Full-Stack Software Engineer')
+  await expect(page).toHaveTitle('Tony Tran — Software Engineer')
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Hi, I’m Tony Tran.')
   for (const id of ['about', 'experience', 'projects', 'skills', 'education', 'contact']) await expect(page.locator(`#${id}`)).toBeAttached()
   const cards = page.locator('.project-card')
