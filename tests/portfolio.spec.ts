@@ -36,17 +36,19 @@ test('renders the selected projects, real links, and responsive sections', async
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Hi, I’m Tony Tran.')
   for (const id of ['about', 'experience', 'projects', 'skills', 'education', 'contact']) await expect(page.locator(`#${id}`)).toBeAttached()
   const cards = page.locator('.project-card')
-  await expect(cards).toHaveCount(3)
+  await expect(cards).toHaveCount(4)
   await expect(page.getByRole('img', { name: 'Portrait of Tony Tran', exact: true })).toBeVisible()
-  await expect(cards.getByRole('img')).toHaveCount(5)
+  await expect(cards.getByRole('img')).toHaveCount(6)
   for (const image of await page.locator('.avatar img, .project-image img').all()) {
     await image.scrollIntoViewIfNeeded()
     await expect(image).toBeVisible()
     await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true)
   }
   await expect(page.locator('.image-placeholder')).toHaveCount(0)
-  for (const name of ['AI Document Translation', 'BIEL Mobile App', 'ATS System']) await expect(cards.getByRole('heading', { name, exact: true })).toBeVisible()
+  await expect(page.getByRole('img', { name: 'Flow diagram showing a new event passing through Azure Service Bus, a Python worker, analysis and rendering, and Blob Storage' })).toBeVisible()
+  for (const name of ['AI Document Translation', 'BIEL Mobile App', 'ATS System', 'Greek Room']) await expect(cards.getByRole('heading', { name, exact: true })).toBeVisible()
   await expect(page.getByRole('link', { name: 'BIEL Mobile App on GitHub' })).toHaveAttribute('href', 'https://github.com/Bible-Translation-Tools/BIEL-mobile-app')
+  await expect(page.getByRole('link', { name: 'Greek Room on GitHub' })).toHaveAttribute('href', 'https://github.com/WycliffeAssociates/greek-room/tree/aw/dev/pipeline-worker')
   await expect(page.locator('a[href^="mailto:"]')).toHaveCount(0)
   await expect(page.getByRole('button', { name: 'Contact by email' })).toBeVisible()
   await expect(page.locator('.experience-row')).toHaveCount(3)
@@ -74,7 +76,7 @@ test('theme follows preference and persists after reload', async ({ page }) => {
 
 test('case studies open, trap focus, close with Escape, and restore focus', async ({ page }) => {
   await page.goto('./')
-  for (const title of ['AI Document Translation', 'BIEL Mobile App', 'ATS System']) {
+  for (const title of ['AI Document Translation', 'BIEL Mobile App', 'ATS System', 'Greek Room']) {
     const trigger = page.getByRole('button', { name: `Read ${title} case study` })
     await trigger.click()
     const dialog = page.getByRole('dialog')

@@ -36,7 +36,7 @@ export function CaseStudy({ project, onClose }: { project: Project | null; onClo
         <div className="case-role"><h3>My role</h3><p>{project.role}</p></div>
         <div className={`architecture${project.architectureLayout === 'vertical' ? ' architecture-vertical' : ''}`} aria-label="Conceptual architecture">
           <p className="eyebrow">Conceptual architecture</p>
-          <div>{project.architecture.map((node, i) => <div className="architecture-step" key={node}><span>{node}</span>{i < project.architecture.length - 1 && <ArrowRight size={18} aria-hidden="true" />}</div>)}</div>
+          {(project.architecturePaths ?? [project.architecture]).map((path, pathIndex) => <div className="architecture-path" key={pathIndex}>{path.map((node, i) => <div className="architecture-step" key={`${pathIndex}-${node}`}><span>{node}</span>{i < path.length - 1 && <ArrowRight size={18} aria-hidden="true" />}</div>)}</div>)}
         </div>
         {project.sections.map(section => <section className="case-section" key={section.title}><h3>{section.title}</h3><p>{section.text}</p></section>)}
         {project.github && <a className="button primary" href={project.github} target="_blank" rel="noopener noreferrer">Explore repository <ArrowUpRight size={17} /></a>}

@@ -192,6 +192,7 @@ h2 { font-size: clamp(36px, 4vw, 50px); line-height: 1.1; letter-spacing: -2.1px
 .case-role p, .case-section p { font-size: 15px; line-height: 1.8; color: var(--muted); margin-top: 10px; }
 .architecture { background: var(--subtle); padding: 22px; margin-top: 28px; border-radius: 16px; }
 .architecture > div { display: flex; align-items: stretch; gap: 8px; margin-top: 17px; }
+.architecture-path + .architecture-path { border-top: 1px solid var(--line); padding-top: 17px; }
 .architecture-step { display: flex; flex: 1; align-items: center; gap: 8px; min-width: 0; }
 .architecture-step span { background: var(--surface); font-size: 12px; text-align: center; padding: 15px 8px; border-radius: 9px; width: 100%; }
 .architecture-step:last-child { flex: .8; }

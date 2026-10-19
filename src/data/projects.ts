@@ -14,6 +14,7 @@ export interface Project {
   role: string
   reviewNote?: string
   architecture: string[]
+  architecturePaths?: string[][]
   architectureLayout?: 'vertical'
   sections: CaseStudySection[]
   source?: { commit: string; files: string[] }
@@ -30,7 +31,7 @@ export const projects: Project[] = [
     stack: ['Java', 'Spring Boot', 'PostgreSQL', 'React'],
     github: 'https://github.com/AnonymousWalker/ats-system',
     role: 'Personal project. Specific ownership and contributions are awaiting confirmation.',
-    architecture: ['React UI', 'Spring Boot API', 'PostgreSQL'],
+    architecture: ['React UI', 'Spring Boot API', 'Worker', 'PostgreSQL'],
     sections: [
       { title: 'Overview', text: 'A résumé–job description matcher. Users paste or upload a résumé, supply a job description, review extracted skills, and calculate a weighted match score. The implementation exposes matched and missing skills rather than only a single number.' },
       { title: 'Key engineering decisions', text: 'Skill extraction is deterministic. Required and preferred skills have different scoring weights, and a review step lets users correct labels before calculating a result. This keeps the scoring process inspectable; it also depends on the skill catalog and cannot capture every nuance of experience.' },
@@ -54,7 +55,7 @@ export const projects: Project[] = [
     backendGithub: 'https://github.com/Bible-Translation-Tools/ai-server-translation',
     role: 'Built and deployed an AI document translation web application and cloud services in 2025, supporting DOCX, PDF, and text files.',
     architectureLayout: 'vertical',
-    architecture: ['Client', 'API server', 'Persistent SQLite queue', 'Background worker', 'Translation engine', 'Results & download'],
+    architecture: ['Client', 'API server', 'Durable Queue', 'Background worker', 'Translation engine', 'Results & download'],
     sections: [
       { title: 'Overview', text: 'A React and TypeScript interface paired with a Python and FastAPI backend and SQLite persistence. Users can translate text or submit multiple files to one or more target languages. A shared NLLB TranslationEngine powers document-specific translators behind a background job workflow.' },
       { title: 'Long-running workflows', text: 'The frontend API client uses a five-minute request timeout. Batch submission returns a job identifier and status URL; a custom queue hook polls status, tracks progress, and stops polling when a job completes, fails, or encounters an error.' },
@@ -89,6 +90,31 @@ export const projects: Project[] = [
       { title: 'Trade-offs & current scope', text: 'Offline access depends on content having been downloaded. Network-first text favors fresh data, while local-first audio avoids fetching an existing download. The repository includes reader and offline-audio tests; these were inspected, not executed as part of this portfolio. No usage or performance metrics are claimed.' },
     ],
     source: { commit: '2f123ba55c4a0cb9f070875096b98d79c1bec8af', files: ['src/api/services/reader.ts', 'src/api/services/audio.ts', 'src/db/schema.ts', 'docs/offline-mode.md', 'docs/chapter-audio.md'] },
+  },
+  {
+    id: 'greek-room', number: '04', title: 'Greek Room', category: 'Event-driven processing pipeline',
+    images: [
+      { src: '/greek-room-pipeline.png', alt: 'Flow diagram showing a new event passing through Azure Service Bus, a Python worker, analysis and rendering, and Blob Storage', label: 'Event processing pipeline', width: 1062, height: 1482 },
+    ],
+    description: 'Turning manually run repository analysis and alignment scripts into an event-driven pipeline for long-running jobs.',
+    focus: 'Azure Service Bus · Async workers · Reliable delivery',
+    stack: ['Python', 'Azure Service Bus', 'asyncio', 'Docker', 'S3-compatible object storage'],
+    github: 'https://github.com/WycliffeAssociates/greek-room/tree/aw/dev/pipeline-worker',
+    role: 'Built a Python worker to automate the existing Greek Room analysis and alignment workflow from repository events.',
+    architecture: ['New Content Event', 'Azure Service Bus', 'Async Python worker', 'Analysis & Rendering', 'Blob Storage'],
+    architecturePaths: [
+      ['New Content Event', 'Azure Service Bus', 'Async Python worker', 'Analysis & Rendering', 'Blob Storage'],
+      ['Client request', 'GET /view/{user}/{repo}', 'FastAPI view route', 'Blob Storage', 'HTML response to client'],
+    ],
+    sections: [
+      { title: 'From manual scripts to events', text: 'Greek Room already had command-line tools for repository analysis and alignment, but running each step required manual coordination. I connected repository events to a long-running Python worker through an Azure Service Bus topic and subscription, so relevant updates could trigger the pipeline automatically.' },
+      { title: 'Async Service Bus, synchronous tools', text: 'The worker uses the asynchronous Azure Service Bus client to receive messages and manage the subscription. Rather than rewrite the existing analysis and file-processing scripts, I ran their blocking work in background threads with asyncio.to_thread, keeping the event loop available for message handling and lock renewal.' },
+      { title: 'Long-running message locks', text: 'Repository processing can take 15 to 20 minutes. The worker registers messages with AutoLockRenewer and allows renewal for up to an hour, keeping the message locked while the existing analysis and alignment steps run.' },
+      { title: 'Acknowledgement and retries', text: 'The worker completes a Service Bus message only after processing succeeds. On failure, it abandons the message so Service Bus can deliver it again. This creates at-least-once processing: a job may run more than once, so storage writes and other side effects need to tolerate redelivery.' },
+      { title: 'Serving generated HTML', text: 'The frontend requests GET /view/{user}/{repo}. The FastAPI view route checks and fetches the generated HTML from Blob Storage, then serves it to the client. Alignment pages are resolved from the stored index and zip archive before returning the requested HTML.' },
+      { title: 'Results and execution boundary', text: 'For relevant repository events, the worker downloads and extracts the repository, runs the existing analysis and alignment workflow, and uploads generated artifacts to object storage. Temporary files are cleaned up after processing. Failures during analysis or upload flow back to message handling and trigger retry behavior.' },
+    ],
+    source: { commit: '1bc5da3fdd4e9f71bc6d0d8cc55c2ea3c16f290f', files: ['pipeline-worker/main.py', 'pipeline-worker/service_bus.py', 'pipeline-worker/alignment_pipeline.py', 'utilities/api_utils.py'] },
   },
 ]
 

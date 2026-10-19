@@ -9,7 +9,7 @@ export const profile = {
   emailEncoded: 'aG9hbmdhbmh0cmFuMTk5OEBnbWFpbC5jb20=' as string | null,
   github: 'https://github.com/AnonymousWalker',
   linkedin: 'https://linkedin.com/in/anh-tran-1001',
-  introduction: 'I bring 5+ years of experience building reliable applications, thoughtful APIs, and tools that make everyday work easier.',
+  introduction: 'I bring 5+ years of experience working across the stack with a back-end focus, building reliable applications, thoughtful APIs, and tools that make everyday work easier.',
   techStack: ['Kotlin', 'Java', 'C# / .NET', 'Python', 'SQL', 'React'],
   about: [
     'I enjoy turning complex problems into software that’s reliable, useful, and easy to maintain.',
