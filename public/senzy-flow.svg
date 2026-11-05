@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" fill="none">
+  <rect width="1200" height="650" rx="28" fill="#F7F8FA"/>
+  <text x="72" y="76" fill="#17191C" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="26" font-weight="650">Senzy payment flow</text>
+  <text x="72" y="108" fill="#69717C" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="16">A simulated payment is committed with its ledger and delivery record.</text>
+
+  <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" text-anchor="middle">
+    <rect x="72" y="192" width="180" height="100" rx="16" fill="#FFFFFF" stroke="#DCE1E7"/>
+    <text x="162" y="232" fill="#17191C" font-size="17" font-weight="600">Web / mobile</text>
+    <text x="162" y="258" fill="#69717C" font-size="14">React · Expo</text>
+
+    <rect x="306" y="192" width="180" height="100" rx="16" fill="#FFFFFF" stroke="#DCE1E7"/>
+    <text x="396" y="232" fill="#17191C" font-size="17" font-weight="600">ASP.NET Core</text>
+    <text x="396" y="258" fill="#69717C" font-size="14">Minimal API</text>
+
+    <rect x="540" y="192" width="180" height="100" rx="16" fill="#FFFFFF" stroke="#DCE1E7"/>
+    <text x="630" y="232" fill="#17191C" font-size="17" font-weight="600">Payments / Funding</text>
+    <text x="630" y="258" fill="#69717C" font-size="14">Own the workflow</text>
+
+    <rect x="774" y="192" width="180" height="100" rx="16" fill="#FFFFFF" stroke="#DCE1E7"/>
+    <text x="864" y="232" fill="#17191C" font-size="17" font-weight="600">Wallets + Ledger</text>
+    <text x="864" y="258" fill="#69717C" font-size="14">Policy · balanced entries</text>
+
+    <rect x="1008" y="192" width="120" height="100" rx="16" fill="#EAF2FC" stroke="#B9D2F1"/>
+    <text x="1068" y="232" fill="#174C88" font-size="16" font-weight="600">PostgreSQL</text>
+    <text x="1068" y="258" fill="#42688E" font-size="13">One transaction</text>
+
+    <rect x="657" y="440" width="215" height="100" rx="16" fill="#FFFFFF" stroke="#DCE1E7"/>
+    <text x="764" y="480" fill="#17191C" font-size="17" font-weight="600">Committed outbox</text>
+    <text x="764" y="506" fill="#69717C" font-size="14">Durable · at least once</text>
+
+    <rect x="925" y="440" width="203" height="100" rx="16" fill="#FFFFFF" stroke="#DCE1E7"/>
+    <text x="1026" y="480" fill="#17191C" font-size="17" font-weight="600">Notifications</text>
+    <text x="1026" y="506" fill="#69717C" font-size="14">Activity · delivery history</text>
+  </g>
+
+  <g stroke="#8B96A4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M260 242h34m-8-8 8 8-8 8"/><path d="M494 242h34m-8-8 8 8-8 8"/>
+    <path d="M728 242h34m-8-8 8 8-8 8"/><path d="M962 242h34m-8-8 8 8-8 8"/>
+    <path d="M1068 306v94H764v34m-8-8 8 8 8-8"/>
+    <path d="M881 490h36m-8-8 8 8-8 8"/>
+  </g>
+
+  <text x="72" y="590" fill="#737C87" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="14">Sandbox only · no real money or bank connections</text>
+</svg>

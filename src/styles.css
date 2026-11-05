@@ -340,11 +340,12 @@ h2 { font-size: clamp(36px, 4vw, 50px); line-height: 1.1; letter-spacing: -2.1px
 .hero::before { content: ''; position: absolute; z-index: -1; pointer-events: none; inset: 0; background: radial-gradient(ellipse 46% 42% at 50% 38%, #0066cc0d 0%, #0066cc05 52%, transparent 100%); }
 [data-theme='dark'] .hero::before { background: radial-gradient(ellipse 46% 42% at 50% 38%, #2997ff14 0%, #2997ff08 52%, transparent 100%); }
 @keyframes soft-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes heading-enter { from { transform: translateY(8px); } to { transform: translateY(0); } }
 @keyframes avatar-enter { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: no-preference) {
   .hero > .avatar { animation: avatar-enter .45s ease-out both; }
   .hero-copy { animation: soft-enter .5s ease-out both; }
-  .heading-entered { animation: soft-enter .4s ease-out; }
+  .heading-entered { animation: heading-enter .4s ease-out; }
   .project-card { transition: margin .2s ease, padding .2s ease, box-shadow .2s ease; }
   .project-card .project-image img { transition: transform .25s ease; }
   @media (hover: hover) and (pointer: fine) {

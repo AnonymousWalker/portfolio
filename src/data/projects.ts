@@ -116,6 +116,32 @@ export const projects: Project[] = [
     ],
     source: { commit: '1bc5da3fdd4e9f71bc6d0d8cc55c2ea3c16f290f', files: ['pipeline-worker/main.py', 'pipeline-worker/service_bus.py', 'pipeline-worker/alignment_pipeline.py', 'utilities/api_utils.py'] },
   },
+  {
+    id: 'senzy', number: '05', title: 'Senzy', category: 'Peer-to-peer payments sandbox',
+    images: [
+      { src: '/senzy-dashboard.png', alt: 'Senzy mobile dashboard showing a simulated balance, Activity, Funding, Profile, and the Pay form', label: 'Payments dashboard', width: 413, height: 769 },
+      { src: '/senzy-flow.svg', alt: 'Diagram showing web and mobile clients calling the ASP.NET Core API, financial modules coordinating Wallets and Ledger in a PostgreSQL transaction, then committed outbox events reaching notification and activity history', label: 'Payment and event flow', width: 1200, height: 650 },
+    ],
+    description: 'A web and mobile payments sandbox exploring trustworthy payment flows, durable ledger behavior, and a people-first social payments experience.',
+    focus: 'Financial invariants · Idempotency · Modular architecture',
+    stack: ['C#', '.NET 10', 'ASP.NET Core', 'PostgreSQL', 'React', 'TypeScript', 'Expo'],
+    github: 'https://github.com/AnonymousWalker/senzy',
+    role: 'Personal project. Specific ownership and contributions are awaiting confirmation.',
+    architecture: ['Web / mobile clients', 'ASP.NET Core API', 'Payments & funding modules', 'Wallets + ledger', 'PostgreSQL transaction'],
+    architecturePaths: [
+      ['Web / mobile clients', 'ASP.NET Core API', 'Payments & funding modules', 'Wallets + ledger', 'PostgreSQL transaction'],
+      ['Committed outbox event', 'Notification handlers', 'Activity & delivery history'],
+    ],
+    sections: [
+      { title: 'Overview', text: 'Senzy is a web and mobile sandbox for peer-to-peer payments. It brings together activity, payments, requests, funding, and wallet controls across React and TypeScript web and Expo mobile clients, backed by an ASP.NET Core modular monolith and PostgreSQL.' },
+      { title: 'One transaction for financial state', text: 'Payments and funding coordinate wallet movement, ledger posting, their business records, idempotency outcomes, and outbox events inside one PostgreSQL transaction. The system acknowledges success after commit. Ledger entries are immutable once posted; corrections use linked compensating transactions.' },
+      { title: 'Safe retries and asynchronous delivery', text: 'Scoped idempotency keys and request fingerprints let the API recognize retries and reject conflicting reuse. Notification work is recorded through a durable outbox and delivered at least once, with per-consumer state and deduplication. This keeps external delivery outside the financial transaction while preserving an inspectable retry path.' },
+      { title: 'Modular monolith boundaries', text: 'The API host composes feature modules in one deployable application. Payments and Funding own their transaction workflows, Wallets coordinates policy and movement, and Ledger owns accounting postings. Shared OpenAPI contracts and runtime validation connect web and mobile clients to the versioned API.' },
+      { title: 'Sandbox boundary', text: 'All balances, funding sources, payments, and reconciliation records are simulated. Banking uses a development-only in-memory stub; the system does not connect to real banks or move money. Durable provider-transfer records are reconciliation fixtures, not settlement evidence.' },
+      { title: 'Current scope', text: 'The repository includes API, identity, ownership, ledger, and integration tests, plus controlled backend load-test reports. These were inspected for this case study, not run as part of this portfolio. Reported measurements belong to specific test setups and are not presented here as general production capacity.' },
+    ],
+    source: { commit: '752b990151f98af2202106ee5129be66e69c5f9a', files: ['README.md', 'docs/BACKEND_ARCHITECTURE.md', 'api-server/Program.cs'] },
+  },
 ]
 
 projects.sort((a, b) => a.number.localeCompare(b.number))
